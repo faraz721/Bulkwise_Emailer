@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Result - BulkWise</title>
+    <meta name="description" content="View the delivery summary of your bulk email campaign with BulkWise. Check sender, subject, and recipient status.">
+    <meta name="keywords" content="bulk email results, BulkWise, email delivery, email sender">
+    <meta name="author" content="BulkWise">
+    <meta property="og:title" content="Result - BulkWise">
+    <meta property="og:description" content="Review the delivery status of your bulk email campaign with BulkWise.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="{{ url_for('send', _external=True) }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h2>Email Delivery Summary</h2>
+
+        <p><strong>Sender:</strong> {{ sender }}</p>
+        <p><strong>Subject:</strong> {{ subject }}</p>
+        <p><strong>Message:</strong></p>
+        <div class="message-box">
+            {{ message }}
+        </div>
+        <p><strong>Attachment:</strong> {{ attachment }}</p>
+        <p><strong>Total Recipients:</strong> {{ recipients | length }}</p>
+
+        {% if results %}
+            <div class="status-list">
+                <h3>Delivery Status:</h3>
+                <ul>
+                    {% for res in results %}
+                        <li class="{% if '❌' in res %}failed{% endif %}">{{ res }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+        {% endif %}
+
+        <a class="back-btn" href="{{ url_for('index') }}">Back to Home</a>
+    </div>
+      <audio id="success-sound" autoplay>
+  <source src="{{ url_for('static', filename='success.mp3') }}" type="audio/mpeg">
+  Your browser does not support the audio element.
+</audio>
+
+<script>
+  const audio = document.getElementById("success-sound");
+  audio.volume = 0.5; // Optional: adjust volume
+</script>
+</body>
+</html>

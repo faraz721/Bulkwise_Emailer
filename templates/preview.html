@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Email Preview - BulkWise</title>
+    <meta name="description" content="Preview your bulk email before sending with BulkWise. Review sender, subject, message, and recipients.">
+    <meta name="keywords" content="bulk email preview, BulkWise, email sender, personalized email">
+    <meta name="author" content="BulkWise">
+    <meta property="og:title" content="Email Preview - BulkWise">
+    <meta property="og:description" content="Preview and send personalized bulk emails with BulkWise.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="{{ url_for('preview', _external=True) }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="preview-container">
+        <h2>Email Preview</h2>
+
+        <div class="preview-section">
+            <strong>Sender:</strong> {{ sender }}
+        </div>
+
+        <div class="preview-section">
+            <strong>Subject:</strong> {{ subject }}
+        </div>
+
+        <div class="preview-section">
+            <strong>Message:</strong>
+            <div class="message-box">{{ message }}</div>
+        </div>
+
+        <div class="preview-section">
+            <strong>Attachment:</strong> {{ attachment }}
+        </div>
+
+        <div class="preview-section">
+            <strong>Total Recipients:</strong> {{ recipients | length }}
+            <div class="recipients-box">
+                {% for r in recipients %}
+                    {{ r.email }}<br>
+                {% endfor %}
+            </div>
+        </div>
+
+        <form method="POST" action="{{ url_for('send') }}">
+            <input type="hidden" name="sender_email" value="{{ sender }}">
+            <input type="hidden" name="sender_password" value="{{ password }}">
+            <input type="hidden" name="subject" value="{{ subject }}">
+            <input type="hidden" name="message" value="{{ message }}">
+            <input type="hidden" name="attachment_name" value="{{ attachment }}">
+            {% for r in recipients %}
+                <input type="hidden" name="recipients" value="{{ r.email }}::{{ r.name }}">
+            {% endfor %}
+
+            <div class="button-row">
+                <button type="submit">Send Email</button>
+                <a href="{{ url_for('index') }}">Back to Edit</a>
+            </div>
+        </form>
+    </div>
+</body>
+</html>

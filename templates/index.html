@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BulkWise - Compose Email</title>
+    <meta name="description" content="BulkWise Email Sender: Send personalized bulk emails with ease. Upload CSV files, add attachments, and preview before sending.">
+    <meta name="keywords" content="bulk email, email sender, personalized email, BulkWise, email marketing">
+    <meta name="author" content="BulkWise">
+    <meta property="og:title" content="BulkWise - Compose Email">
+    <meta property="og:description" content="Send personalized bulk emails effortlessly with BulkWise.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="{{ url_for('index', _external=True) }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>BulkWise Email Sender</h1>
+        <p class="tagline">Send personalized emails in bulk with ease</p>
+
+        {% with messages = get_flashed_messages() %}
+          {% if messages %}
+            <div class="flash">
+              {% for message in messages %}
+                <p>{{ message }}</p>
+              {% endfor %}
+            </div>
+          {% endif %}
+        {% endwith %}
+
+        <form method="POST" action="{{ url_for('preview') }}" enctype="multipart/form-data">
+            <label for="sender_email">Sender Email</label>
+            <input type="email" name="sender_email" id="sender_email" required aria-required="true">
+
+            <label for="sender_password">Sender Password (App Password)</label>
+            <input type="password" name="sender_password" id="sender_password" required aria-required="true">
+
+            <label for="recipient_emails">Recipient Emails (comma-separated)</label>
+            <input type="text" name="recipient_emails" id="recipient_emails" placeholder="example1@gmail.com, example2@gmail.com" aria-describedby="recipient_emails_help">
+            <small id="recipient_emails_help">Enter emails separated by commas.</small>
+
+            <label for="email_file">Upload CSV (optional)</label>
+            <input type="file" name="email_file" id="email_file" accept=".csv">
+
+            <label for="subject">Email Subject</label>
+            <input type="text" name="subject" id="subject" required aria-required="true">
+
+            <label for="message">Email Message</label>
+            <textarea name="message" id="message" rows="5" placeholder="Use {{name}} to personalize" required aria-required="true"></textarea>
+
+            <label for="attachment">Attachment (Max 30 MB)</label>
+            <input type="file" name="attachment" id="attachment">
+
+            <button type="submit">Preview Email</button>
+        </form>
+    </div>
+</body>
+</html>
