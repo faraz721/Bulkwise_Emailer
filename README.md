@@ -1,7 +1,8 @@
 # bulkwise-emailer
 > **Overview**
 BulkWise Emailer is a web-based tool that helps you send emails to many people at once. You can either upload a CSV file with names and emails or type email addresses manually. You can write one email message and personalize it for each person using their name. You can also attach a file (like a PDF report), preview your message, and then send it. This tool is simple, clean, and works on mobile, tablet, and desktop.
-Features
+
+**Features**
 
 - Send bulk emails through your Gmail account
 - Supports both manual and CSV-based email input
@@ -18,12 +19,12 @@ Bulkwise_Emailer/
 ├── app.py
 ├── requirements.txt
 ├── static/
-│   ├── style.css
-│   └── success.mp3
+│ ├── style.css
+│ └── success.mp3
 ├── templates/
-│   ├── index.html
-│   ├── preview.html
-│   └── result.html
+│ ├── index.html
+│ ├── preview.html
+│ └── result.html
 ├── uploads/
 └── README.md
 
