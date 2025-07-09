@@ -42,20 +42,45 @@ Then open your browser and visit: http://127.0.0.1:5000
 
 **How to Fill the Form**
 
-Sender Email: Your Gmail address (e.g., yourname@gmail.com)
-App Password: Gmail App Password (Direct link: https://myaccount.google.com/apppasswords). Choose App: 'Mail', and Device: 'Other (Custom name)' → Enter: BulkWise. Click 'Generate'. Copy the 16-character code shown. Use this in the app.
-Recipient Emails: Optional, comma-separated emails
-Upload CSV: Optional, CSV with columns Name and Email
-Subject: Your email subject
-Message: Use {{name}} for personalization
-Attachment: Optional file upload
+**Sender Email:**
+Enter your Gmail address (e.g., yourname@gmail.com).
+
+**App Password:**
+Visit this link: https://myaccount.google.com/apppasswords
+
+Choose App: Mail
+
+Choose Device: Other (Custom name)
+
+Enter: BulkWise
+
+Click Generate
+
+Copy the 16-character code shown and use this as the password in the app.
+
+**Recipient Emails (optional):
+
+**Type comma-separated email addresses (e.g., abc@gmail.com, xyz@gmail.com).
+
+**Upload CSV (optional):
+
+**Upload a .csv file with two columns: Name and Email.
 
 **CSV Format Example**
-
 Use this format for uploading recipients via CSV:
 Name,Email
 Ali,ali@gmail.com
 Sara,sara@gmail.com
+
+**Subject:**
+Type the subject of your email.
+
+**Message:**
+**Write your email body.**
+Use {{name}} to personalize each email with the recipient’s name.
+
+**Attachment (optional):**
+**You can attach one file (up to 30 MB). Supported types include PDF, DOCX, etc.
 
 **Developer**
 Ahmed Faraz Malik
